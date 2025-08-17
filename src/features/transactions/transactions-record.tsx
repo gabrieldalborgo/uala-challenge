@@ -1,6 +1,6 @@
 import { ListSkeleton } from "./components/list";
 import filterIcon from "../../assets/filter-icon.svg";
-import exportIcon from "../../assets/export.svg";
+import exportIcon from "../../assets/export-icon.svg";
 
 export function TransactionsRecord() {
   return (
