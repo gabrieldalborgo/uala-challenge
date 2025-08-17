@@ -11,7 +11,7 @@ import {
 
 export function AppSidebar() {
   return (
-    <Sidebar>
+    <Sidebar className="shadow-[10px_0px_31px_0px_#E7EEFF80] border-none">
       <SidebarHeader className="h-20">
         <div className="ml-5 h-full flex items-center">
           <img

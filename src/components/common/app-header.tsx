@@ -3,7 +3,7 @@ import { SidebarTrigger } from "@/components/ui/sidebar"
 
 function DesktopHeader() {
   return (
-    <header className="h-20 w-full bg-white border-b border-gray-200 flex items-center px-6">
+    <header className="h-20 w-full bg-white flex items-center px-6">
       <div className="flex items-center gap-8">
         <img 
           src="/src/assets/profile.svg" 
@@ -25,7 +25,7 @@ function DesktopHeader() {
 function MobileHeader() {
 
   return (
-    <header className="h-20 w-full bg-white border-b border-gray-200">
+    <header className="h-20 w-full bg-white">
       <SidebarTrigger />
       {/* Header content will go here */}
     </header>
