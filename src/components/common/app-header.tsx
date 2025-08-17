@@ -7,7 +7,7 @@ import ualaLogoSvg from "/src/assets/uala-isotipo-mobile.svg"
 
 function DesktopHeader() {
   return (
-    <header className="h-20 w-full bg-white flex items-center px-6">
+    <header className="h-20 w-full bg-white flex items-center px-6 sticky top-0 z-10">
       <div className="flex items-center gap-8">
         <img
           src={profileSvg}
@@ -29,7 +29,7 @@ function DesktopHeader() {
 function MobileHeader() {
   const { toggleSidebar } = useSidebar()
   return (
-    <header className="h-14 w-full bg-[#fafafa]">
+    <header className="h-14 w-full bg-[#fafafa] sticky top-0 z-10">
       <div className="h-full w-full bg-background flex items-center px-0 border-b border-[#dee2ec] rounded-bl-[32px]">
         <div className="w-20 flex items-center">
           <div className="ml-6">
