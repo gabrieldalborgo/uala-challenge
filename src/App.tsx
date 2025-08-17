@@ -1,34 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Layout from './components/layout/layout'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <Layout>
+      <div className="p-8 min-h-screen bg-background">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-4xl font-bold mb-8 text-foreground">Welcome to My App</h1>
+          <div className="grid gap-6">
+            <div className="p-6 bg-card rounded-lg border">
+              <h2 className="text-2xl font-semibold mb-4">Getting Started</h2>
+              <p className="text-muted-foreground">
+                This is a React application with a sidebar navigation. You can toggle the sidebar using the button in the top-left corner or by pressing Cmd/Ctrl + B.
+              </p>
+            </div>
+            <div className="p-6 bg-card rounded-lg border">
+              <h2 className="text-2xl font-semibold mb-4">Features</h2>
+              <ul className="space-y-2 text-muted-foreground">
+                <li>• Responsive sidebar navigation</li>
+                <li>• Dark/light mode support</li>
+                <li>• Keyboard shortcuts</li>
+                <li>• Mobile-friendly design</li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </Layout>
   )
 }
 
