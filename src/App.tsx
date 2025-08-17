@@ -3,7 +3,7 @@ import Layout from './components/layout/layout'
 function App() {
   return (
     <Layout>
-      <div className="p-8 min-h-screen bg-background">
+      <div className="p-8">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl font-bold mb-8 text-foreground">Welcome to My App</h1>
           <div className="grid gap-6">

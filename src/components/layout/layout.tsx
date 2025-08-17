@@ -1,15 +1,16 @@
-import { SidebarProvider, SidebarTrigger, SidebarInset } from "@/components/ui/sidebar"
-import { useIsMobile } from "@/hooks/use-mobile"
+import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/common/app-sidebar"
+import { AppHeader } from "@/components/common/app-header"
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  const isMobile = useIsMobile()
   return (
     <SidebarProvider>
       <AppSidebar />
       <SidebarInset>
-        {isMobile && <SidebarTrigger />}
-        {children}
+        <AppHeader />
+        <div className="bg-[#fafafa] min-h-screen">
+          {children}
+        </div>
       </SidebarInset>
     </SidebarProvider>
   )
