@@ -1,4 +1,5 @@
 import { Skeleton } from "@/components/ui/skeleton";
+import { Tabs } from "./components/tabs";
 import pieIcon from "../../assets/pie-icon.svg";
 
 export function CollectionsSummary() {
@@ -20,6 +21,9 @@ export function CollectionsSummary() {
             Tus cobros
           </div>
         </div>
+      </div>
+      <div className="flex justify-evenly">
+        <Tabs />
       </div>
       <div className="flex justify-center">
         <Skeleton className="w-52 h-10 rounded-2xl bg-[#dee2ec]" />
