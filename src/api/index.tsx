@@ -1,17 +1,10 @@
 import { useQuery, type UseQueryResult } from "@tanstack/react-query"
 import type { CardDto, PaymentMethodDto, ResponseDto, TransactionDto } from "./types"
 
-// Function to get the appropriate URL based on environment
 function getApiUrl(): string {
   const baseUrl = "https://uala-dev-challenge.s3.us-east-1.amazonaws.com/transactions.json"
-  
-  // In development, use a CORS proxy
-  if (import.meta.env.DEV) {
-    return `https://api.allorigins.win/raw?url=${encodeURIComponent(baseUrl)}`
-  }
-  
-  // In production, use the direct URL
-  return baseUrl
+  // CORS proxy to avoid CORS errors
+  return `https://api.allorigins.win/raw?url=${encodeURIComponent(baseUrl)}`
 }
 
 function useFetchApi<T>({ select }: { select: (data: ResponseDto) => T }): UseQueryResult<T> {
