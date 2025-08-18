@@ -1,16 +1,16 @@
 import { useIsMobile } from "@/hooks/use-mobile"
 import { useSidebar } from "../ui/sidebar"
 
-import profileSvg from "@/assets/profile.svg"
-import menuIconSvg from "@/assets/menu-icon.svg"
-import ualaLogoSvg from "@/assets/uala-isotipo-mobile.svg"
+import profile from "@/assets/profile.png"
+import menuIcon from "@/assets/menu-icon.svg"
+import ualaLogo from "@/assets/uala-isotipo-mobile.svg"
 
 function DesktopHeader() {
   return (
     <header className="h-20 w-full bg-white flex items-center px-6 sticky top-0">
       <div className="flex items-center gap-8">
         <img
-          src={profileSvg}
+          src={profile}
           alt="Profile"
           width="40"
           height="40"
@@ -35,7 +35,7 @@ function MobileHeader() {
           <div className="ml-6">
             <button className="w-6 h-6 p-0 flex items-center cursor-pointer" onClick={toggleSidebar}>
               <img
-                src={menuIconSvg}
+                src={menuIcon}
                 alt="Menu"
                 width="24"
                 height="24"
@@ -47,7 +47,7 @@ function MobileHeader() {
 
         <div className="flex-1 flex justify-center">
           <img
-            src={ualaLogoSvg}
+            src={ualaLogo}
             alt="Uala"
             width="80"
             height="40"
