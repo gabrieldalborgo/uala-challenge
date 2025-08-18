@@ -1,51 +1,28 @@
-import { Skeleton } from "@/components/ui/skeleton";
+import { useState } from "react";
+import { GoToMetrics } from "./components/go-to-metrics";
+import { Header } from "./components/header";
 import { Tabs } from "./components/tabs";
-import pieIcon from "../../assets/pie-icon.svg";
+import { Total, TotalSkeleton } from "./components/total";
+import { useCollections } from "./hooks/use-collections";
+import type { Periodicity } from "./types";
 
 export function CollectionsSummary() {
+  const [periodicity, setPeriodicity] = useState<Periodicity>("weekly")
+  const { summary, state } = useCollections({ periodicity })
   return (
     <div className="w-full mt-10 flex flex-col gap-4">
       <div className="flex justify-center">
-        <div className="w-[320px]">
-          <div
-            className="text-[#313643]"
-            style={{
-              fontFamily: 'Public Sans',
-              fontWeight: 600,
-              fontStyle: 'SemiBold',
-              fontSize: '22px',
-              lineHeight: '120%',
-              letterSpacing: '0px'
-            }}
-          >
-            Tus cobros
-          </div>
-        </div>
+        <Header />
       </div>
       <div className="flex justify-evenly">
-        <Tabs />
+        <Tabs periodicity={periodicity} setPeriodicity={setPeriodicity} />
       </div>
       <div className="flex justify-center">
-        <Skeleton className="w-52 h-10 rounded-2xl bg-[#dee2ec]" />
+        {state === "loading" && <TotalSkeleton />}
+        {["empty", "success"].includes(state) && <Total amount={summary.amount} />}
       </div>
       <div className="flex justify-center">
-        <button className="flex items-center gap-2">
-          <img src={pieIcon} alt="Filter" className="w-6 h-6" />
-          <span
-            className="text-[#022A9A]"
-            style={{
-              fontFamily: 'Public Sans',
-              fontWeight: 400,
-              fontStyle: 'Regular',
-              fontSize: '14px',
-              lineHeight: '100%',
-              letterSpacing: '0%',
-              textAlign: 'right'
-            }}
-          >
-            Ver métricas
-          </span>
-        </button>
+        <GoToMetrics />
       </div>
     </div>
   )
