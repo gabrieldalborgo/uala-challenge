@@ -1,5 +1,18 @@
-import { useEffect, useState } from "react"
+import { useMemo } from "react"
+import { useFetchTransactions, useFetchPaymentMethods, useFetchCards } from "@/api"
 import type { Transaction } from "../types"
+
+function formatAmount(amount: number) {
+  return amount >= 0 ? `+$${amount.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : `-$${Math.abs(amount).toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+}
+
+function formatDate(date: string) {
+  try {
+    return new Date(date).toLocaleDateString('es-AR', { day: '2-digit', month: '2-digit', year: 'numeric' })
+  } catch {
+    return '00/00/0000'
+  }
+}
 
 type StateType = "empty" | "loading" | "error" | "success"
 
@@ -9,66 +22,48 @@ interface UseTransactionsReturn {
   error: string | null
 }
 
-// Function to get the appropriate URL based on environment
-function getTransactionsUrl(): string {
-  const baseUrl = "https://uala-dev-challenge.s3.us-east-1.amazonaws.com/transactions.json"
-  
-  return `https://api.allorigins.win/raw?url=${encodeURIComponent(baseUrl)}`
-
-  // // In development, use a CORS proxy
-  // if (import.meta.env.DEV) {
-  //   return `https://api.allorigins.win/raw?url=${encodeURIComponent(baseUrl)}`
-  // }
-  
-  // // In production, use the direct URL
-  // return baseUrl
-}
-
 export function useTransactions(): UseTransactionsReturn {
 
-  const [state, setState] = useState<StateType>("success")
-  const [transactions, setTransactions] = useState<Transaction[]>([{
-    id: "1",
-    amount: 100,
-    date: "2021-01-01",
-    method: "credit_card",
-    type: "credit"
-  }])
-  const [error, setError] = useState<string | null>(null)
+  const { data: transactions, isLoading: isLoadingTransactions, error: errorFromApi } = useFetchTransactions()
+  const { data: paymentMethods, isLoading: isLoadingPaymentMethods, error: errorFromPaymentMethods } = useFetchPaymentMethods()
+  const { data: cards, isLoading: isLoadingCards, error: errorFromCards } = useFetchCards()
 
-  useEffect(() => {
-    async function process() {
-      setState("loading")
-      setTransactions([])
-      setError(null)
-      try {
-        const response = await fetch(getTransactionsUrl())
-        const data = await response.json()
-        setTransactions(data.transactions.map((transaction: any) => ({
-          id: transaction.id,
-          amount: transaction.amount,
-          date: transaction.createdAt,
-          method: transaction.paymentMethod,
-          type: 'credit'
-        })))
-        setState("success")
-      } catch (err) {
-        if (err instanceof Error) {
-          setError(err.message)
-        } else {
-          setError("An unknown error occurred")
-        }
-        setState("error")
-      }
+  const isLoading = useMemo(() => isLoadingTransactions || isLoadingPaymentMethods || isLoadingCards, [isLoadingTransactions, isLoadingPaymentMethods, isLoadingCards])
+  const error = useMemo(() => errorFromApi || errorFromPaymentMethods || errorFromCards, [errorFromApi, errorFromPaymentMethods, errorFromCards])
+
+  if (isLoading) {
+    return {
+      state: "loading",
+      transactions: [],
+      error: null
     }
-    process()
-  }, [])
-
-  const returnValue: UseTransactionsReturn = {
-    transactions,
-    state,
-    error,
   }
 
-  return returnValue
+  if (error) {
+    return {
+      state: "error",
+      transactions: [],
+      error: error.message
+    }
+  }
+
+  if (!transactions || transactions.length === 0) {
+    return {
+      state: "empty",
+      transactions: [],
+      error: null
+    }
+  }
+
+  return {
+    state: "success",
+    error: null,
+    transactions: transactions.map((transaction) => ({
+      id: transaction.id,
+      amount: formatAmount(transaction.amount),
+      date: formatDate(transaction.createdAt),
+      method: paymentMethods?.find((paymentMethod) => paymentMethod.value === transaction.paymentMethod)?.label ?? "unknown",
+      type: cards?.find((card) => card.value === transaction.card)?.label ?? "unknown", 
+    })) ?? []
+  }
 }
