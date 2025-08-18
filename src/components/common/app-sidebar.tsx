@@ -9,13 +9,19 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 
+import ualaIsotipo from "@/assets/uala-isotipo.svg"
+import homeMenu from "@/assets/home-menu-icon.svg"
+import metricsMenu from "@/assets/metrics-menu-icon.svg"
+import appStore from "@/assets/app-store.svg"
+import googlePlay from "@/assets/google-play.svg"
+
 export function AppSidebar() {
   return (
     <Sidebar className="shadow-[10px_0px_31px_0px_#E7EEFF80] border-none">
       <SidebarHeader className="h-20">
         <div className="ml-5 h-full flex items-center">
           <img
-            src="/src/assets/uala-isotipo.svg"
+            src={ualaIsotipo}
             alt="Ualá Logo"
             width="120"
             height="40"
@@ -29,7 +35,7 @@ export function AppSidebar() {
             <SidebarMenuItem className="h-12 w-full">
               <SidebarMenuButton tooltip="Inicio" className="h-12 w-full items-center gap-4">
                 <img
-                  src="/src/assets/home-menu-icon.svg"
+                  src={homeMenu}
                   alt="Home Icon"
                   width="24"
                   height="24"
@@ -41,7 +47,7 @@ export function AppSidebar() {
             <SidebarMenuItem className="h-12 w-full">
               <SidebarMenuButton tooltip="Métricas" className="h-12 w-full items-center gap-4">
                 <img
-                  src="/src/assets/metrics-menu-icon.svg"
+                  src={metricsMenu}
                   alt="Metrics Icon"
                   width="24"
                   height="24"
@@ -60,7 +66,7 @@ export function AppSidebar() {
         <div className="space-y-4 flex flex-col items-center">
           <button className="w-[136px] h-[40px] cursor-pointer">
             <img
-              src="/src/assets/app-store.svg"
+              src={appStore}
               alt="Download on App Store"
               width="136"
               height="40"
@@ -69,7 +75,7 @@ export function AppSidebar() {
           </button>
           <button className="w-[136px] h-[40px] cursor-pointer">
             <img
-              src="/src/assets/google-play.svg"
+              src={googlePlay}
               alt="Download on Google Play"
               width="136"
               height="40"

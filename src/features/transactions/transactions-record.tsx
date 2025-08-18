@@ -1,8 +1,12 @@
-import { ListSkeleton } from "./components/list";
+import { List, ListSkeleton } from "./components/list";
+import { useTransactions } from "./hooks/use-transactions";
 import filterIcon from "../../assets/filter-icon.svg";
 import exportIcon from "../../assets/export-icon.svg";
+import { EmptyState } from "./components/empty-state";
 
 export function TransactionsRecord() {
+  const { transactions, state } = useTransactions()
+
   return (
     <div className="pr-2 pl-2">
       <div className="flex items-center justify-between h-12 pb-2">
@@ -29,7 +33,9 @@ export function TransactionsRecord() {
           </button>
         </div>
       </div>
-      <ListSkeleton count={10} />
+      {state === "loading" && <ListSkeleton count={10} />}
+      {state === "success" && <List items={transactions} />}
+      {state === "empty" && <EmptyState />}
     </div>
   )
 }

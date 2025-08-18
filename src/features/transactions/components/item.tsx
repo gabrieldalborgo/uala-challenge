@@ -1,23 +1,39 @@
 import { Skeleton } from "@/components/ui/skeleton"
+import type { Transaction } from "../types"
+import storeIcon from "@/assets/store-icon.svg"
 
-export interface ItemProps {
-  amount: number
-  date: string
-  method: string
+export interface ItemProps extends Transaction {}
+
+const formatAmount = (amount: number) => {
+  return amount >= 0 ? `+$${amount.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : `-$${Math.abs(amount).toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
 }
 
-export function Item({ amount, date, method }: ItemProps) {
+const formatDate = (date: string) => {
+  try {
+    return new Date(date).toLocaleDateString('es-AR', { day: '2-digit', month: '2-digit', year: 'numeric' })
+  } catch {
+    return '00/00/0000'
+  }
+}
+
+export function Item({ amount, date, method, type }: ItemProps) {
   return (
-    <div className="flex items-center justify-between">
-      <div className="flex items-center gap-2">
-        <div className="w-10 h-10 bg-gray-200 rounded-full"></div>
-        <div className="flex flex-col">
-          <span className="text-sm font-medium">{method}</span>
-          <span className="text-xs text-gray-500">{date}</span>
-        </div>
+    <div className="flex items-center justify-between w-full h-14 gap-2 border-b border-gray-200 pt-3 pr-2 pb-3 pl-2">
+      {/* Left: Icon */}
+      <img src={storeIcon} alt="Store icon" className="w-8 h-8" />
+      
+      {/* Middle: Method and Type (takes remaining space, left-aligned) */}
+      <div className="flex flex-col flex-1 text-left gap-1">
+        <span className="text-[14px] font-semibold leading-none text-[#313643]" style={{ fontFamily: 'Public Sans', letterSpacing: '0%', verticalAlign: 'middle' }}>{method}</span>
+        <span className="text-[14px] font-thin leading-none text-[#606882]" style={{ fontFamily: 'Public Sans', letterSpacing: '0%', verticalAlign: 'middle' }}>{type}</span>
       </div>
-      <div className="flex items-center gap-2">
-        <span className="text-sm font-medium">{amount}</span>
+      
+      {/* Right: Amount and Date (right-aligned) */}
+      <div className="flex flex-col items-end gap-1">
+        <span className="text-[14px] font-semibold leading-none text-[#1C8367] text-right" style={{ fontFamily: 'Public Sans', letterSpacing: '0%', verticalAlign: 'middle' }}>
+          {formatAmount(amount)}
+        </span>
+        <span className="text-[14px] font-thin leading-none text-[#606882] text-right" style={{ fontFamily: 'Public Sans', letterSpacing: '0%', verticalAlign: 'middle' }}>{formatDate(date)}</span>
       </div>
     </div>
   )

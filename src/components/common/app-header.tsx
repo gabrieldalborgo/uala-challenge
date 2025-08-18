@@ -1,9 +1,9 @@
 import { useIsMobile } from "@/hooks/use-mobile"
 import { useSidebar } from "../ui/sidebar"
 
-import profileSvg from "/src/assets/profile.svg"
-import menuIconSvg from "/src/assets/menu-icon.svg"
-import ualaLogoSvg from "/src/assets/uala-isotipo-mobile.svg"
+import profileSvg from "@/assets/profile.svg"
+import menuIconSvg from "@/assets/menu-icon.svg"
+import ualaLogoSvg from "@/assets/uala-isotipo-mobile.svg"
 
 function DesktopHeader() {
   return (
