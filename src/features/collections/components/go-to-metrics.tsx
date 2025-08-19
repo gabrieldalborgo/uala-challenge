@@ -1,11 +1,25 @@
 import pieIcon from "../../../assets/pie-icon.svg";
+import pieWhiteIcon from "../../../assets/pie-white-icon.svg";
+import { Button } from "../../../components/ui/button";
+import { useState } from "react";
 
 export function GoToMetrics() {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
-    <button className="flex items-center gap-2">
-      <img src={pieIcon} alt="Filter" className="w-6 h-6" />
+    <Button 
+      variant="ghost" 
+      className="text-[#022A9A] hover:bg-[#022A9A] hover:text-white transition-colors rounded-full cursor-pointer"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onClick={() => alert('Not implemented')}
+    >
+      <img 
+        src={isHovered ? pieWhiteIcon : pieIcon} 
+        alt="Filter" 
+        className="w-6 h-6 transition-all" 
+      />
       <span
-        className="text-[#022A9A]"
         style={{
           fontFamily: 'Public Sans',
           fontWeight: 400,
@@ -18,6 +32,6 @@ export function GoToMetrics() {
       >
         Ver métricas
       </span>
-    </button>
+    </Button>
   )
 }

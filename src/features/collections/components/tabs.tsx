@@ -1,8 +1,13 @@
 import type { Periodicity } from "../types"
+import { Button } from "@/components/ui/button"
 
 function Tab({ label, selected, onClick }: { label: string, selected?: boolean, onClick: () => void }) {
   return (
-    <div className="h-12 flex items-center" onClick={onClick}>
+    <Button
+      variant="ghost"
+      className="h-12 flex items-center p-0 hover:bg-transparent cursor-pointer"
+      onClick={onClick}
+    >
       <div className="flex flex-col items-center">
         <div
           className="text-[#565656]"
@@ -23,7 +28,7 @@ function Tab({ label, selected, onClick }: { label: string, selected?: boolean, 
           />
         )}
       </div>
-    </div>
+    </Button>
   )
 }
 

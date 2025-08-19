@@ -1,4 +1,5 @@
 import { useMemo } from "react"
+import { DateTime } from "luxon"
 import { useFetchTransactions, useFetchPaymentMethods, useFetchCards } from "@/api"
 import type { Transaction } from "../types"
 
@@ -24,7 +25,9 @@ interface UseTransactionsReturn {
 
 export function useTransactions(): UseTransactionsReturn {
 
-  const { data: transactions, isLoading: isLoadingTransactions, error: errorFromApi } = useFetchTransactions()
+  const { data: transactions, isLoading: isLoadingTransactions, error: errorFromApi } = useFetchTransactions({
+    maxDate: DateTime.now().plus({ days: 1 }).startOf('day').toISO()
+  })
   const { data: paymentMethods, isLoading: isLoadingPaymentMethods, error: errorFromPaymentMethods } = useFetchPaymentMethods()
   const { data: cards, isLoading: isLoadingCards, error: errorFromCards } = useFetchCards()
 

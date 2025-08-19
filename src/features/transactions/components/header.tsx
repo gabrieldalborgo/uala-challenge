@@ -1,7 +1,14 @@
+import { Button } from "@/components/ui/button";
 import filterIcon from "@/assets/filter-icon.svg";
 import exportIcon from "@/assets/export-icon.svg";
 
-export function Header() {
+interface HeaderProps {
+  title: string
+  onFilter: () => void
+  onExport: () => void
+}
+
+export function Header({ title, onFilter, onExport }: HeaderProps) {
   return (
     <div className="flex items-center justify-between h-12 pb-2">
       <div 
@@ -16,15 +23,15 @@ export function Header() {
           verticalAlign: 'middle'
         }}
       >
-        Historial de transacciones
+        {title}
       </div>
-      <div className="flex items-center gap-6">
-        <button className="w-6 h-6 flex items-center justify-center">
+      <div className="flex items-center gap-0">
+        <Button className="rounded-full cursor-pointer" size="icon" variant="ghost" onClick={onFilter}>
           <img src={filterIcon} alt="Filter" className="w-6 h-6" />
-        </button>
-        <button className="w-6 h-6 flex items-center justify-center">
+        </Button>
+        <Button className="rounded-full cursor-pointer" size="icon" variant="ghost" onClick={onExport}>
           <img src={exportIcon} alt="Export" className="w-6 h-6" />
-        </button>
+        </Button>
       </div>
     </div>
   );

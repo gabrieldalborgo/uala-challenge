@@ -9,7 +9,11 @@ export function TransactionsRecord() {
 
   return (
     <div className="pr-2 pl-2">
-      <Header />
+      <Header
+        title="Historial de transacciones"
+        onFilter={() => alert('filter')}
+        onExport={() => alert('Not implemented')}
+      />
       {state === "loading" && <ListSkeleton count={10} />}
       {state === "error" && <ErrorState />}
       {state === "empty" && <EmptyState />}

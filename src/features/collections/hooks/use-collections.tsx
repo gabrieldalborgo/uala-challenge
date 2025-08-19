@@ -30,7 +30,7 @@ export function useCollections({ periodicity }: { periodicity: Periodicity }): U
 
   const { data, isLoading, error } = useFetchTransactions({
     minDate: getMinDate(periodicity),
-    maxDate: DateTime.now().endOf('day').toISO()
+    maxDate: DateTime.now().plus({ days: 1 }).startOf('day').toISO()
   })
 
   if (isLoading) {
