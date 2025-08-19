@@ -1,7 +1,7 @@
-import { CreditCard } from 'lucide-react'
-import { Switch } from '@/components/ui/switch'
+import { CustomSwitch } from '@/features/transactions/components/custom-switch'
 import { CustomBadge } from './custom-badge'
 import type { Filters } from '../types'
+import installmentIcon from '@/assets/installment-icon.svg'
 
 const ALL_INSTALLMENT_OPTION = { id: 'all', label: 'Todas' }
 
@@ -20,22 +20,22 @@ interface InstallmentFilterProps {
 
 export function InstallmentFilter({ value, onChange }: InstallmentFilterProps) {
   return (
-    <div className="p-3 rounded-lg transition-colors hover:bg-accent/50">
-      <div className="flex items-center justify-between">
+    <div className="rounded-lg transition-colors hover:bg-accent/50">
+      <div className="flex items-center justify-between h-12">
         <div className="flex items-center gap-3">
           <div className="text-muted-foreground">
-            <CreditCard className="size-5" />
+            <img src={installmentIcon} alt="Installment" className="size-6" />
           </div>
-          <span className="text-sm font-medium">Cuotas</span>
+          <span className="text-[14px] font-semibold leading-[100%] text-[#313643]" style={{ fontFamily: 'Public Sans', fontStyle: 'SemiBold', letterSpacing: '0%', verticalAlign: 'middle' }}>Cuotas</span>
         </div>
-        <Switch
+        <CustomSwitch
           checked={Boolean(value)}
-          onCheckedChange={(checked) => onChange(checked ? [] : undefined)}
+          onCheckedChange={(checked: boolean) => onChange(checked ? [] : undefined)}
         />
       </div>
 
       {value && (
-        <div className="mt-3 flex flex-wrap gap-2">
+        <div className="mb-2 flex flex-wrap gap-2">
           <CustomBadge
             id={ALL_INSTALLMENT_OPTION.id}
             label={ALL_INSTALLMENT_OPTION.label}

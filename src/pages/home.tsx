@@ -5,10 +5,10 @@ import { TransactionsRecord } from "@/features/transactions/transactions-record"
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useState } from "react";
 
-function Wrapper({ children }: { children: React.ReactNode }) {
+function Wrapper({ children, fullHeight = false }: { children: React.ReactNode, fullHeight?: boolean }) {
   return (
     <div className="flex justify-center">
-      <div className="w-[440px] flex flex-col gap-5">{children}</div>
+      <div className={`w-[440px] flex flex-col gap-5 ${fullHeight ? 'h-[calc(100vh-56px)]' : ''}`}>{children}</div>
     </div>
   )
 }
@@ -24,7 +24,7 @@ interface HomeProps {
 
 function HomeMobile({ filters, filtersOpen, onApplyFilters, onCloseFilters, onFilter, onExport }: HomeProps) {
   return (
-    <Wrapper>
+    <Wrapper fullHeight={filtersOpen}>
       {filtersOpen ? (
         <TransactionsFilters
           filters={filters}

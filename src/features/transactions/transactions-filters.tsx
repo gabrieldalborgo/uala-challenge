@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { ChevronLeft } from 'lucide-react'
 import { Sheet, SheetContent } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
 import type { Filters } from './types'
@@ -8,6 +7,7 @@ import { PaymentMethodFilter } from './components/payment-method-filter'
 import { InstallmentFilter } from './components/installment-filter'
 import { DateFilter } from './components/date-filter'
 import { AmountFilter } from './components/amount-filter'
+import chevronLeftIcon from '@/assets/chevron-left-icon.svg'
 
 interface TransactionsFiltersSheetProps {
   open: boolean
@@ -44,13 +44,13 @@ export function TransactionsFilters({
   }
 
   const handleFilterChange = (filter: keyof Filters, value: unknown) => {
-    setCurrentFilters({ ...currentFilters, [filter]: value })
+    setCurrentFilters(f => ({ ...f, [filter]: value }))
   }
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full m-5 mb-0">
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b">
+      <div className="flex items-center">
         <div className="flex items-center gap-3">
           <Button
             variant="ghost"
@@ -58,27 +58,27 @@ export function TransactionsFilters({
             onClick={onClose}
             className="h-8 w-8 p-0"
           >
-            <ChevronLeft className="size-5" />
+            <img src={chevronLeftIcon} alt="Back" className="size-5" />
           </Button>
-          <h1 className="text-lg font-semibold">Filtros</h1>
+          <h1 className="text-[16px] font-semibold leading-[18px] text-[#3A3A3A]" style={{ fontFamily: 'Public Sans', letterSpacing: '0px' }}>Filtros</h1>
         </div>
-        <Button
-          variant="ghost"
-          onClick={handleClearFilters}
-          className="text-muted-foreground hover:text-foreground p-0 h-auto"
-        >
-          Limpiar
-        </Button>
       </div>
 
       {/* Content */}
-      <div className="flex-1 p-4 overflow-y-auto">
-        <div className="mb-6">
-          <h2 className="text-base font-medium text-foreground">Todos los filtros</h2>
+      <div className="flex-1 overflow-y-auto mt-10">
+        <div className="mb-6 flex items-center justify-between">
+          <h2 className="text-[16px] font-semibold leading-[18px] text-[#3A3A3A]" style={{ fontFamily: 'Public Sans', letterSpacing: '0px' }}>Todos los filtros</h2>
+          <Button
+            variant="ghost"
+            onClick={handleClearFilters}
+            className="text-muted-foreground hover:text-foreground p-0 h-auto"
+          >
+            Limpiar
+          </Button>
         </div>
 
         {/* Filter Components */}
-        <div className="space-y-4">
+        <div className="p-2 mb-2">
 
           <DateFilter
             minDate={currentFilters.minDate}
@@ -112,11 +112,12 @@ export function TransactionsFilters({
       </div>
 
       {/* Footer with Apply Button */}
-      <div className="p-4 border-t">
+      <div className="p-4">
         <Button
           onClick={handleApplyFilters}
           disabled={JSON.stringify(filters) === JSON.stringify(currentFilters)}
-          className="w-full h-12 text-base font-medium"
+          className="w-full h-12 bg-[#022A9A] text-white rounded-full hover:bg-[#022A9A]/90 text-[16px] leading-[100%] font-thin"
+          style={{ fontFamily: 'Public Sans', letterSpacing: '0%' }}
         >
           Aplicar filtros
         </Button>
