@@ -1,7 +1,7 @@
 import { useMemo } from "react"
 import { DateTime } from "luxon"
 import { useFetchTransactions, useFetchPaymentMethods, useFetchCards } from "@/api"
-import type { Transaction } from "../types"
+import type { Filters, Transaction } from "../types"
 
 function formatAmount(amount: number) {
   return amount >= 0 ? `+$${amount.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : `-$${Math.abs(amount).toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
@@ -23,11 +23,21 @@ interface UseTransactionsReturn {
   error: string | null
 }
 
-export function useTransactions(): UseTransactionsReturn {
+interface UseTransactionsProps {
+  filters: Filters
+}
 
-  const { data: transactions, isLoading: isLoadingTransactions, error: errorFromApi } = useFetchTransactions({
-    maxDate: DateTime.now().plus({ days: 1 }).startOf('day').toISO()
-  })
+export function useTransactions({ filters }: UseTransactionsProps): UseTransactionsReturn {
+
+  const enhancedFilters = useMemo<Filters>(() => {
+    return {
+      ...filters,
+      // This is just to avoid the api to return "future" transactions
+      maxDate: filters.maxDate || DateTime.now().plus({ days: 1 }).startOf('day').toISO()
+    }
+  }, [filters])
+
+  const { data: transactions, isLoading: isLoadingTransactions, error: errorFromApi } = useFetchTransactions(enhancedFilters)
   const { data: paymentMethods, isLoading: isLoadingPaymentMethods, error: errorFromPaymentMethods } = useFetchPaymentMethods()
   const { data: cards, isLoading: isLoadingCards, error: errorFromCards } = useFetchCards()
 

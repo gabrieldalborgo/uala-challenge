@@ -1,6 +1,6 @@
 import { DateTime } from "luxon"
 import { useQuery, type UseQueryResult } from "@tanstack/react-query"
-import type { CardDto, PaymentMethodDto, ResponseDto, TransactionDto } from "./types"
+import type { CardDto, TransactionsFilters, PaymentMethodDto, ResponseDto, TransactionDto } from "./types"
 
 function getApiUrl(): string {
   const baseUrl = "https://uala-dev-challenge.s3.us-east-1.amazonaws.com/transactions.json"
@@ -24,14 +24,9 @@ function useFetchApi<T>({ select, queryKey, transform = (r: ResponseDto) => r }:
   })
 }
 
-interface UseFetchTransactionsProps {
-  minDate?: string
-  maxDate?: string
-}
-
-export function useFetchTransactions(filters: UseFetchTransactionsProps = {}): UseQueryResult<TransactionDto[]> {
+export function useFetchTransactions(filters: TransactionsFilters = {}): UseQueryResult<TransactionDto[]> {
   return useFetchApi({
-    queryKey: [filters.minDate, filters.maxDate],
+    queryKey: [filters.minDate, filters.maxDate, filters.card, filters.paymentMethod, filters.installment, filters.minAmount, filters.maxAmount],
     transform: (response) => {
 
       if (filters.minDate) {
@@ -48,6 +43,26 @@ export function useFetchTransactions(filters: UseFetchTransactionsProps = {}): U
           const transactionDate = DateTime.fromISO(transaction.createdAt)
           return transactionDate <= maxDate
         })
+      }
+
+      if (filters.card && filters.card.length > 0) {
+        response.transactions = response.transactions.filter((transaction) => filters.card!.includes(transaction.card))
+      }
+
+      if (filters.paymentMethod && filters.paymentMethod.length > 0) {
+        response.transactions = response.transactions.filter((transaction) => filters.paymentMethod!.includes(transaction.paymentMethod))
+      }
+
+      if (filters.installment && filters.installment.length > 0) {
+        response.transactions = response.transactions.filter((transaction) => filters.installment!.includes(transaction.installments.toString()))
+      }
+
+      if (filters.minAmount) {
+        response.transactions = response.transactions.filter((transaction) => transaction.amount >= filters.minAmount!)
+      }
+
+      if (filters.maxAmount) {
+        response.transactions = response.transactions.filter((transaction) => transaction.amount <= filters.maxAmount!)
       }
 
       // Sort transactions by createdAt date (newest first)

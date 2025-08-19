@@ -24,3 +24,13 @@ export interface ResponseDto {
     cards: CardDto[]
   }
 }
+
+export interface TransactionsFilters {
+  minDate?: string,
+  maxDate?: string,
+  card?: string[],
+  minAmount?: number,
+  maxAmount?: number,
+  paymentMethod?: string[],
+  installment?: string[],
+}

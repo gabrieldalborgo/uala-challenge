@@ -1,5 +1,6 @@
 import { CollectionsSummary } from "@/features/collections/collections-summary";
 import { TransactionsFilters, TransactionsFiltersSheet } from "@/features/transactions/transactions-filters";
+import type { Filters } from "@/features/transactions/types";
 import { TransactionsRecord } from "@/features/transactions/transactions-record";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useState } from "react";
@@ -13,39 +14,43 @@ function Wrapper({ children }: { children: React.ReactNode }) {
 }
 
 interface HomeProps {
+  filters: Filters,
   filtersOpen: boolean,
+  onApplyFilters: (filters: Filters) => void,
   onCloseFilters: () => void,
   onFilter: () => void
   onExport: () => void
 }
 
-function HomeMobile({ filtersOpen, onCloseFilters, onFilter, onExport }: HomeProps) {
+function HomeMobile({ filters, filtersOpen, onApplyFilters, onCloseFilters, onFilter, onExport }: HomeProps) {
   return (
     <Wrapper>
       {filtersOpen ? (
         <TransactionsFilters
+          filters={filters}
           onClose={onCloseFilters}
-          onApply={() => alert('Not implemented')}
+          onApply={onApplyFilters}
         />
       ) : (
         <>
           <CollectionsSummary />
-          <TransactionsRecord onFilter={onFilter} onExport={onExport} />
+          <TransactionsRecord filters={filters} onFilter={onFilter} onExport={onExport} />
         </>
       )}
     </Wrapper>
   )
 }
 
-function HomeDesktop({ filtersOpen, onCloseFilters, onFilter, onExport }: HomeProps) {
+function HomeDesktop({ filters, filtersOpen, onApplyFilters, onCloseFilters, onFilter, onExport }: HomeProps) {
   return (
     <Wrapper>
       <CollectionsSummary />
-      <TransactionsRecord onFilter={onFilter} onExport={onExport} />
+      <TransactionsRecord filters={filters} onFilter={onFilter} onExport={onExport} />
       <TransactionsFiltersSheet
+        filters={filters}
         open={filtersOpen}
         onClose={onCloseFilters}
-        onApply={() => alert('Not implemented')}
+        onApply={onApplyFilters}
       />
     </Wrapper>
   )
@@ -54,13 +59,18 @@ function HomeDesktop({ filtersOpen, onCloseFilters, onFilter, onExport }: HomePr
 export function Home() {
   const isMobile = useIsMobile()
   const [filtersOpen, setFiltersOpen] = useState(false)
+  const [filters, setFilters] = useState<Filters>({})
+  const openFilters = () => setFiltersOpen(true)
+  const closeFilters = () => setFiltersOpen(false)
 
   if (isMobile) {
     return (
       <HomeMobile
+        filters={filters}
         filtersOpen={filtersOpen}
-        onCloseFilters={() => setFiltersOpen(false)}
-        onFilter={() => setFiltersOpen(true)}
+        onApplyFilters={setFilters}
+        onCloseFilters={closeFilters}
+        onFilter={openFilters}
         onExport={() => alert('Not implemented')}
       />
     )
@@ -68,7 +78,9 @@ export function Home() {
 
   return (
     <HomeDesktop
+      filters={filters}
       filtersOpen={filtersOpen}
+      onApplyFilters={setFilters}
       onCloseFilters={() => setFiltersOpen(false)}
       onFilter={() => setFiltersOpen(true)}
       onExport={() => alert('Not implemented')}
