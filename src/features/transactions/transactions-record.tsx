@@ -4,15 +4,20 @@ import { ErrorState } from "./components/error-state";
 import { Header } from "./components/header";
 import { List, ListSkeleton } from "./components/list";
 
-export function TransactionsRecord() {
+interface TransactionsRecordProps {
+  onFilter: () => void
+  onExport: () => void
+}
+
+export function TransactionsRecord({ onFilter, onExport }: TransactionsRecordProps) {
   const { transactions, state } = useTransactions()
 
   return (
     <div className="pr-2 pl-2">
       <Header
         title="Historial de transacciones"
-        onFilter={() => alert('filter')}
-        onExport={() => alert('Not implemented')}
+        onFilter={onFilter}
+        onExport={onExport}
       />
       {state === "loading" && <ListSkeleton count={10} />}
       {state === "error" && <ErrorState />}
