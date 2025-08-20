@@ -1,15 +1,14 @@
 # Ualá Challenge - Transaction Management Dashboard
 
-A modern, responsive web application for managing and filtering financial transactions. Built as part of a technical assessment for Ualá, this project demonstrates proficiency in React development, TypeScript, and modern web technologies.
+A modern, responsive web application for managing and filtering financial transactions.
 
 ## 🚀 Features
 
 - **Transaction Management**: View and filter financial transactions with real-time data
 - **Advanced Filtering**: Multiple filter options including date ranges, payment methods, card types, and amount ranges
-- **Responsive Design**: Optimized for desktop, tablet, and mobile devices
+- **Responsive Design**: Optimized for desktop and mobile devices
 - **Interactive Components**: Custom sliders, switches, and form controls
 - **Real-time Updates**: Dynamic filtering with immediate visual feedback
-- **Accessibility**: Built with accessibility best practices in mind
 
 ## 📦 Installation and Execution Instructions
 
@@ -43,9 +42,15 @@ A modern, responsive web application for managing and filtering financial transa
 - `npm run dev` - Start development server with hot reload
 - `npm run build` - Build for production
 - `npm run preview` - Preview production build locally
-- `npm run test:e2e` - Run end-to-end tests
 - `npm run lint` - Run ESLint for code quality checks
+- `npm run test:unit` - Run unit tests
+- `npm run test:unit:coverage` - Run unit tests with coverage report
+- `npm run test:unit:ui` - Run unit tests with UI interface
+- `npm run test:e2e` - Run end-to-end tests
+- `npm run test:e2e:ui` - Run end-to-end tests with UI interface
 - `npm run test:visual` - Run visual regression tests
+- `npm run test:visual:ui` - Run visual regression tests with UI interface
+- `npm run test:visual:update` - Run visual regression tests and update snapshots
 
 ## 🏗️ Architecture Explanation
 
@@ -253,10 +258,24 @@ src/
 
 ## 🧪 Testing
 
-The project includes comprehensive testing:
-- **Visual Regression Tests**: Automated screenshot comparisons across browsers
-- **End-to-End Tests**: Full user journey testing with Playwright
-- **Cross-browser Testing**: Support for Chrome, Firefox, Safari, and mobile browsers
+The project implements a multi-layered testing strategy to ensure code quality, functionality, and visual consistency:
+
+### **Unit Testing** (`tests/unit/`)
+- **Framework**: Vitest with React Testing Library
+- **Coverage**: V8 coverage provider with HTML, JSON, and text reports
+
+### **End-to-End Testing** (`tests/e2e/`)
+- **Framework**: Playwright
+- **Focus**: User journey testing and integration scenarios
+
+### **Visual Regression Testing** (`tests/visual/`)
+- **Framework**: Playwright with screenshot comparison
+- **Coverage**: 
+  - Desktop and mobile viewports
+  - Loading and error states
+  - Cross-browser visual consistency
+  - Responsive design validation
+  - Performance monitoring
 
 ## 🚀 Deployment
 
