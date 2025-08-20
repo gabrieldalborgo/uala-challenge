@@ -1,40 +1,40 @@
 const transactionsMock = {
-  "transactions": [],
-  "metadata": {
-    "cards": [
+  transactions: [],
+  metadata: {
+    cards: [
       {
-        "value": "visa",
-        "label": "Visa"
+        value: 'visa',
+        label: 'Visa',
       },
       {
-        "value": "mastercard",
-        "label": "Mastercard"
+        value: 'mastercard',
+        label: 'Mastercard',
       },
       {
-        "value": "amex",
-        "label": "Amex"
-      }
+        value: 'amex',
+        label: 'Amex',
+      },
     ],
-    "paymentMethods": [
+    paymentMethods: [
       {
-        "value": "link",
-        "label": "Link de pago"
+        value: 'link',
+        label: 'Link de pago',
       },
       {
-        "value": "qr",
-        "label": "Código QR"
+        value: 'qr',
+        label: 'Código QR',
       },
       {
-        "value": "mpos",
-        "label": "mPOS"
+        value: 'mpos',
+        label: 'mPOS',
       },
       {
-        "value": "pospro",
-        "label": "POS Pro"
-      }
-    ]
-  }
-}
+        value: 'pospro',
+        label: 'POS Pro',
+      },
+    ],
+  },
+};
 
 export async function mockDataEndpoint(page, delayMs = 0, errorType = 'none') {
   await page.route('**/api/data', async route => {

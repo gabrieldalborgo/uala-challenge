@@ -1,28 +1,48 @@
-import { CollectionsSummary } from "@/features/collections/collections-summary";
-import { TransactionsFilters, TransactionsFiltersSheet } from "@/features/transactions/transactions-filters";
-import type { Filters } from "@/features/transactions/types";
-import { TransactionsRecord } from "@/features/transactions/transactions-record";
-import { useIsMobile } from "@/hooks/use-mobile";
-import { useState } from "react";
+import { CollectionsSummary } from '@/features/collections/collections-summary';
+import {
+  TransactionsFilters,
+  TransactionsFiltersSheet,
+} from '@/features/transactions/transactions-filters';
+import type { Filters } from '@/features/transactions/types';
+import { TransactionsRecord } from '@/features/transactions/transactions-record';
+import { useIsMobile } from '@/hooks/use-mobile';
+import { useState } from 'react';
 
-function Wrapper({ children, fullHeight = false }: { children: React.ReactNode, fullHeight?: boolean }) {
+function Wrapper({
+  children,
+  fullHeight = false,
+}: {
+  children: React.ReactNode;
+  fullHeight?: boolean;
+}) {
   return (
     <div className="flex justify-center">
-      <div className={`w-[440px] flex flex-col gap-5 ${fullHeight ? 'h-[calc(100vh-56px)]' : ''}`}>{children}</div>
+      <div
+        className={`w-[440px] flex flex-col gap-5 ${fullHeight ? 'h-[calc(100vh-56px)]' : ''}`}
+      >
+        {children}
+      </div>
     </div>
-  )
+  );
 }
 
 interface HomeProps {
-  filters: Filters,
-  filtersOpen: boolean,
-  onApplyFilters: (filters: Filters) => void,
-  onCloseFilters: () => void,
-  onFilter: () => void
-  onExport: () => void
+  filters: Filters;
+  filtersOpen: boolean;
+  onApplyFilters: (filters: Filters) => void;
+  onCloseFilters: () => void;
+  onFilter: () => void;
+  onExport: () => void;
 }
 
-function HomeMobile({ filters, filtersOpen, onApplyFilters, onCloseFilters, onFilter, onExport }: HomeProps) {
+function HomeMobile({
+  filters,
+  filtersOpen,
+  onApplyFilters,
+  onCloseFilters,
+  onFilter,
+  onExport,
+}: HomeProps) {
   return (
     <Wrapper fullHeight={filtersOpen}>
       {filtersOpen ? (
@@ -34,18 +54,33 @@ function HomeMobile({ filters, filtersOpen, onApplyFilters, onCloseFilters, onFi
       ) : (
         <>
           <CollectionsSummary />
-          <TransactionsRecord filters={filters} onFilter={onFilter} onExport={onExport} />
+          <TransactionsRecord
+            filters={filters}
+            onFilter={onFilter}
+            onExport={onExport}
+          />
         </>
       )}
     </Wrapper>
-  )
+  );
 }
 
-function HomeDesktop({ filters, filtersOpen, onApplyFilters, onCloseFilters, onFilter, onExport }: HomeProps) {
+function HomeDesktop({
+  filters,
+  filtersOpen,
+  onApplyFilters,
+  onCloseFilters,
+  onFilter,
+  onExport,
+}: HomeProps) {
   return (
     <Wrapper>
       <CollectionsSummary />
-      <TransactionsRecord filters={filters} onFilter={onFilter} onExport={onExport} />
+      <TransactionsRecord
+        filters={filters}
+        onFilter={onFilter}
+        onExport={onExport}
+      />
       <TransactionsFiltersSheet
         filters={filters}
         open={filtersOpen}
@@ -53,15 +88,15 @@ function HomeDesktop({ filters, filtersOpen, onApplyFilters, onCloseFilters, onF
         onApply={onApplyFilters}
       />
     </Wrapper>
-  )
+  );
 }
 
 export function Home() {
-  const isMobile = useIsMobile()
-  const [filtersOpen, setFiltersOpen] = useState(false)
-  const [filters, setFilters] = useState<Filters>({})
-  const openFilters = () => setFiltersOpen(true)
-  const closeFilters = () => setFiltersOpen(false)
+  const isMobile = useIsMobile();
+  const [filtersOpen, setFiltersOpen] = useState(false);
+  const [filters, setFilters] = useState<Filters>({});
+  const openFilters = () => setFiltersOpen(true);
+  const closeFilters = () => setFiltersOpen(false);
 
   if (isMobile) {
     return (
@@ -73,7 +108,7 @@ export function Home() {
         onFilter={openFilters}
         onExport={() => alert('Not implemented')}
       />
-    )
+    );
   }
 
   return (
@@ -85,5 +120,5 @@ export function Home() {
       onFilter={() => setFiltersOpen(true)}
       onExport={() => alert('Not implemented')}
     />
-  )
+  );
 }

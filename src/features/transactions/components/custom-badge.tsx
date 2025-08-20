@@ -1,14 +1,19 @@
-import { X } from 'lucide-react'
-import { Badge } from '@/components/ui/badge'
+import { X } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
 
 interface CustomBadgeProps {
-  id: string
-  label: string
-  isSelected: boolean
-  onToggle: (id: string) => void
+  id: string;
+  label: string;
+  isSelected: boolean;
+  onToggle: (id: string) => void;
 }
 
-export function CustomBadge({ id, label, isSelected, onToggle }: CustomBadgeProps) {
+export function CustomBadge({
+  id,
+  label,
+  isSelected,
+  onToggle,
+}: CustomBadgeProps) {
   return (
     <Badge
       variant="outline"
@@ -17,9 +22,7 @@ export function CustomBadge({ id, label, isSelected, onToggle }: CustomBadgeProp
       onClick={() => onToggle(id)}
     >
       {label}
-      {isSelected && (
-        <X className="size-3 ml-1" />
-      )}
+      {isSelected && <X className="size-3 ml-1" />}
     </Badge>
-  )
+  );
 }

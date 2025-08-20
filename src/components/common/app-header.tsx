@@ -1,9 +1,9 @@
-import { useIsMobile } from "@/hooks/use-mobile"
-import { useSidebar } from "../ui/sidebar"
+import { useIsMobile } from '@/hooks/use-mobile';
+import { useSidebar } from '../ui/sidebar';
 
-import profile from "@/assets/profile.png"
-import menuIcon from "@/assets/menu-icon.svg"
-import ualaLogo from "@/assets/uala-isotipo-mobile.svg"
+import profile from '@/assets/profile.png';
+import menuIcon from '@/assets/menu-icon.svg';
+import ualaLogo from '@/assets/uala-isotipo-mobile.svg';
 
 function DesktopHeader() {
   return (
@@ -16,24 +16,25 @@ function DesktopHeader() {
           height="40"
           className="w-10 h-10"
         />
-        <span
-          className="font-['Public_Sans'] font-semibold text-base leading-[18px] tracking-[0px]"
-        >
+        <span className="font-['Public_Sans'] font-semibold text-base leading-[18px] tracking-[0px]">
           Name
         </span>
       </div>
     </header>
-  )
+  );
 }
 
 function MobileHeader() {
-  const { toggleSidebar } = useSidebar()
+  const { toggleSidebar } = useSidebar();
   return (
     <header className="h-14 w-full bg-[#fafafa] sticky top-0">
       <div className="h-full w-full bg-background flex items-center px-0 border-b border-[#dee2ec] rounded-bl-[32px]">
         <div className="w-20 flex items-center">
           <div className="ml-6">
-            <button className="w-6 h-6 p-0 flex items-center cursor-pointer" onClick={toggleSidebar}>
+            <button
+              className="w-6 h-6 p-0 flex items-center cursor-pointer"
+              onClick={toggleSidebar}
+            >
               <img
                 src={menuIcon}
                 alt="Menu"
@@ -59,15 +60,15 @@ function MobileHeader() {
         <div className="w-20 h-6"></div>
       </div>
     </header>
-  )
+  );
 }
 
 export function AppHeader() {
-  const isMobile = useIsMobile()
+  const isMobile = useIsMobile();
 
   if (isMobile) {
-    return <MobileHeader />
+    return <MobileHeader />;
   }
 
-  return <DesktopHeader />
+  return <DesktopHeader />;
 }

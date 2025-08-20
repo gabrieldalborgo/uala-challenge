@@ -9,11 +9,11 @@ export function Header() {
           fontStyle: 'SemiBold',
           fontSize: '22px',
           lineHeight: '120%',
-          letterSpacing: '0px'
+          letterSpacing: '0px',
         }}
       >
         Tus cobros
       </div>
     </div>
-  )
+  );
 }

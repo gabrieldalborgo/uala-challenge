@@ -1,40 +1,41 @@
-import { useFetchPaymentMethods } from "@/api"
-import type { PaymentMethodDto } from "@/api/types"
+import { useFetchPaymentMethods } from '@/api';
+import type { PaymentMethodDto } from '@/api/types';
 
-type StateType = "empty" | "loading" | "error"
+type StateType = 'empty' | 'loading' | 'error';
 
-type UsePaymentMethodsReturn = {
-  state: StateType,
-  paymentMethods?: undefined
-} | {
-  paymentMethods: PaymentMethodDto[]
-  state: "success"
-}
+type UsePaymentMethodsReturn =
+  | {
+      state: StateType;
+      paymentMethods?: undefined;
+    }
+  | {
+      paymentMethods: PaymentMethodDto[];
+      state: 'success';
+    };
 
 export function usePaymentMethods(): UsePaymentMethodsReturn {
-
-  const { data, isLoading, error } = useFetchPaymentMethods()
+  const { data, isLoading, error } = useFetchPaymentMethods();
 
   if (isLoading) {
     return {
-      state: "loading"
-    }
+      state: 'loading',
+    };
   }
 
   if (error) {
     return {
-      state: "error"
-    }
+      state: 'error',
+    };
   }
 
   if (!data || data.length === 0) {
     return {
-      state: "empty"
-    }
+      state: 'empty',
+    };
   }
 
   return {
-    state: "success",
-    paymentMethods: data
-  }
+    state: 'success',
+    paymentMethods: data,
+  };
 }

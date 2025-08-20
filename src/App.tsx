@@ -1,6 +1,6 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { Home } from './pages/home'
-import Layout from './components/layout/layout'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Home } from './pages/home';
+import Layout from './components/layout/layout';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -9,7 +9,7 @@ const queryClient = new QueryClient({
       retryOnMount: false,
     },
   },
-})
+});
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
         <Home />
       </Layout>
     </QueryClientProvider>
-  )
+  );
 }
 
-export default App
+export default App;

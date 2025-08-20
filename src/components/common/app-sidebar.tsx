@@ -7,13 +7,13 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar"
+} from '@/components/ui/sidebar';
 
-import ualaIsotipo from "@/assets/uala-isotipo.svg"
-import homeMenu from "@/assets/home-menu-icon.svg"
-import metricsMenu from "@/assets/metrics-menu-icon.svg"
-import appStore from "@/assets/app-store.svg"
-import googlePlay from "@/assets/google-play.svg"
+import ualaIsotipo from '@/assets/uala-isotipo.svg';
+import homeMenu from '@/assets/home-menu-icon.svg';
+import metricsMenu from '@/assets/metrics-menu-icon.svg';
+import appStore from '@/assets/app-store.svg';
+import googlePlay from '@/assets/google-play.svg';
 
 export function AppSidebar() {
   return (
@@ -33,7 +33,10 @@ export function AppSidebar() {
         <SidebarGroup>
           <SidebarMenu>
             <SidebarMenuItem className="h-12 w-full">
-              <SidebarMenuButton tooltip="Inicio" className="h-12 w-full items-center gap-4">
+              <SidebarMenuButton
+                tooltip="Inicio"
+                className="h-12 w-full items-center gap-4"
+              >
                 <img
                   src={homeMenu}
                   alt="Home Icon"
@@ -41,11 +44,16 @@ export function AppSidebar() {
                   height="24"
                   className="w-6 h-6 ml-5"
                 />
-                <span className="font-sans font-normal text-sm leading-[18px] tracking-[0px] text-[#3564FD]">Inicio</span>
+                <span className="font-sans font-normal text-sm leading-[18px] tracking-[0px] text-[#3564FD]">
+                  Inicio
+                </span>
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem className="h-12 w-full">
-              <SidebarMenuButton tooltip="Métricas" className="h-12 w-full items-center gap-4">
+              <SidebarMenuButton
+                tooltip="Métricas"
+                className="h-12 w-full items-center gap-4"
+              >
                 <img
                   src={metricsMenu}
                   alt="Metrics Icon"
@@ -53,7 +61,9 @@ export function AppSidebar() {
                   height="24"
                   className="w-6 h-6 ml-5"
                 />
-                <span className="font-sans font-normal text-sm leading-[18px] tracking-[0px]">Métricas</span>
+                <span className="font-sans font-normal text-sm leading-[18px] tracking-[0px]">
+                  Métricas
+                </span>
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>
@@ -85,5 +95,5 @@ export function AppSidebar() {
         </div>
       </SidebarFooter>
     </Sidebar>
-  )
+  );
 }

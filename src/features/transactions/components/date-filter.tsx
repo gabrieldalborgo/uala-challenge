@@ -1,10 +1,10 @@
-import { CustomSwitch } from '@/features/transactions/components/custom-switch'
-import type { Filters } from '../types'
-import calendarIcon from '@/assets/calendar-icon.svg'
+import { CustomSwitch } from '@/features/transactions/components/custom-switch';
+import type { Filters } from '../types';
+import calendarIcon from '@/assets/calendar-icon.svg';
 
 interface DateFilterProps {
-  minDate: Filters['minDate']
-  maxDate: Filters['maxDate']
+  minDate: Filters['minDate'];
+  maxDate: Filters['maxDate'];
 }
 
 export function DateFilter({ minDate, maxDate }: DateFilterProps) {
@@ -15,13 +15,20 @@ export function DateFilter({ minDate, maxDate }: DateFilterProps) {
           <div className="text-muted-foreground">
             <img src={calendarIcon} alt="Calendar" className="size-6" />
           </div>
-          <span className="text-[14px] font-semibold leading-[100%] text-[#313643]" style={{ fontFamily: 'Public Sans', fontStyle: 'SemiBold', letterSpacing: '0%', verticalAlign: 'middle' }}>Fecha</span>
+          <span
+            className="text-[14px] font-semibold leading-[100%] text-[#313643]"
+            style={{
+              fontFamily: 'Public Sans',
+              fontStyle: 'SemiBold',
+              letterSpacing: '0%',
+              verticalAlign: 'middle',
+            }}
+          >
+            Fecha
+          </span>
         </div>
-        <CustomSwitch
-          checked={Boolean(minDate) || Boolean(maxDate)}
-          disabled
-        />
+        <CustomSwitch checked={Boolean(minDate) || Boolean(maxDate)} disabled />
       </div>
     </div>
-  )
+  );
 }

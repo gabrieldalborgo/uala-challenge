@@ -1,7 +1,15 @@
-import type { Periodicity } from "../types"
-import { Button } from "@/components/ui/button"
+import type { Periodicity } from '../types';
+import { Button } from '@/components/ui/button';
 
-function Tab({ label, selected, onClick }: { label: string, selected?: boolean, onClick: () => void }) {
+function Tab({
+  label,
+  selected,
+  onClick,
+}: {
+  label: string;
+  selected?: boolean;
+  onClick: () => void;
+}) {
   return (
     <Button
       variant="ghost"
@@ -17,27 +25,41 @@ function Tab({ label, selected, onClick }: { label: string, selected?: boolean, 
             fontSize: '14px',
             lineHeight: '18px',
             letterSpacing: '0px',
-            textAlign: 'center'
+            textAlign: 'center',
           }}
         >
           {label}
         </div>
-        {selected && (
-          <div 
-            className="w-2 h-2 rounded-full bg-[#022A9A] mt-3"
-          />
-        )}
+        {selected && <div className="w-2 h-2 rounded-full bg-[#022A9A] mt-3" />}
       </div>
     </Button>
-  )
+  );
 }
 
-export function Tabs({ periodicity, setPeriodicity }: { periodicity: Periodicity, setPeriodicity: (periodicity: Periodicity) => void }) {
+export function Tabs({
+  periodicity,
+  setPeriodicity,
+}: {
+  periodicity: Periodicity;
+  setPeriodicity: (periodicity: Periodicity) => void;
+}) {
   return (
     <>
-      <Tab label="Diario" selected={periodicity === "daily"} onClick={() => setPeriodicity("daily")} />
-      <Tab label="Semanal" selected={periodicity === "weekly"} onClick={() => setPeriodicity("weekly")} />
-      <Tab label="Mensual" selected={periodicity === "monthly"} onClick={() => setPeriodicity("monthly")} />
+      <Tab
+        label="Diario"
+        selected={periodicity === 'daily'}
+        onClick={() => setPeriodicity('daily')}
+      />
+      <Tab
+        label="Semanal"
+        selected={periodicity === 'weekly'}
+        onClick={() => setPeriodicity('weekly')}
+      />
+      <Tab
+        label="Mensual"
+        selected={periodicity === 'monthly'}
+        onClick={() => setPeriodicity('monthly')}
+      />
     </>
-  )
+  );
 }

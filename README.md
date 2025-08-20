@@ -13,23 +13,27 @@ A modern, responsive web application for managing and filtering financial transa
 ## 📦 Installation and Execution Instructions
 
 ### Prerequisites
+
 - Node.js (v22 or higher)
 - npm package manager
 
 ### Local Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/gabrieldalborgo/uala-challenge
    cd uala-challenge
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Run in development mode**
+
    ```bash
    npm run dev
    ```
@@ -55,6 +59,7 @@ A modern, responsive web application for managing and filtering financial transa
 ## 🏗️ Architecture Explanation
 
 ### Project Structure
+
 ```
 src/
 ├── api/                 # Data layer and services
@@ -75,21 +80,25 @@ src/
 ### Architectural Patterns
 
 #### 1. **Feature-Based Architecture**
+
 - Organization by functionality instead of file types
 - Each feature contains its own components, hooks, and types
 - Clear separation of responsibilities
 
 #### 2. **Custom Hooks Pattern**
+
 - Business logic encapsulated in custom hooks
 - Logic reuse between components
 - Separation of concerns between UI and logic
 
 #### 3. **Component Composition**
+
 - Small and reusable components
 - Minimized props drilling
 - Use of React Context when necessary
 
 #### 4. **Data Fetching with React Query**
+
 - Centralized server state management
 - Automatic caching and revalidation
 - Loading and error state handling
@@ -99,16 +108,19 @@ src/
 ### 1. **Technology Stack**
 
 **Frontend Framework: React 19 + TypeScript**
+
 - React 19 for latest performance optimizations
 - TypeScript for type safety and better DX
 - Vite as bundler for its speed and simple configuration
 
 **Styling: Tailwind CSS v4**
+
 - Utility-first CSS for rapid development
 - Optimized configuration with path aliases
 - Consistent design system
 
 **UI Components: Radix UI + Custom Components**
+
 - Radix UI for accessible base components
 - Custom components for specific cases
 - Variant system with class-variance-authority
@@ -116,12 +128,14 @@ src/
 ### 2. **State Management**
 
 **React Query (TanStack Query)**
+
 - Server state management
 - Automatic caching with 1-minute staleTime
 - Automatic revalidation every minute
 - Client-side data transformation to avoid multiple requests
 
 **Local State with React Hooks**
+
 - useState for simple component state
 - useMemo for performance optimizations
 - Custom hooks for reusable logic
@@ -129,12 +143,14 @@ src/
 ### 3. **Data Handling**
 
 **API Integration**
+
 - Single endpoint with client-side transformation
 - Frontend filtering to avoid multiple requests
 - CORS proxy (allorigins.win) for development
 - Client-side data formatting (dates, amounts)
 
 **Date Handling**
+
 - Luxon for date manipulation
 - Consistent formatting for Argentina (es-AR)
 - Timezone handling and validations
@@ -142,6 +158,7 @@ src/
 ### 4. **Testing Strategy**
 
 **Playwright for E2E Testing**
+
 - Automated visual regression tests
 - Cross-browser testing (Chrome, Firefox, Safari)
 - Responsive testing on different viewports
@@ -150,9 +167,11 @@ src/
 ### 5. **Performance Optimizations**
 
 **Code Splitting**
+
 - Vite for automatic optimizations
 
 **Memoization**
+
 - useMemo for expensive calculations
 
 ## 🚀 Future Improvements
@@ -160,12 +179,14 @@ src/
 ### 1. **Additional Features**
 
 **Transaction Management**
+
 - Export filtered data (CSV, PDF)
 - Saved filter history
 - Text search in descriptions
 - Transaction grouping by categories
 
 **Analytics and Reports**
+
 - Expense trend charts
 - Dashboard with key metrics
 - Period comparison
@@ -174,18 +195,21 @@ src/
 ### 2. **Technical Improvements**
 
 **Backend Integration**
+
 - Real API with database
 - Authentication and authorization
 - WebSockets for real-time updates
 - Pagination for large data volumes
 
 **Performance**
+
 - Virtualization for long lists
 - Service Workers for offline support
 - Progressive Web App (PWA)
 - Lazy loading of images
 
 **Testing**
+
 - Unit tests with Jest/Vitest
 - Integration tests
 - Performance testing
@@ -194,12 +218,14 @@ src/
 ### 3. **UX/UI Improvements**
 
 **Accessibility**
+
 - Complete keyboard navigation
 - Screen reader optimizations
 - High contrast mode
 - Motion reduction for sensitive users
 
 **Mobile Experience**
+
 - Native touch gestures
 - Pull-to-refresh
 - Infinite scroll
@@ -208,12 +234,14 @@ src/
 ### 4. **DevOps and Deployment**
 
 **CI/CD Pipeline**
+
 - GitHub Actions for automation
 - Automatic quality gates
 - Automatic deployment to staging/production
 - Automatic rollback on errors
 
 **Monitoring**
+
 - Error tracking (Sentry)
 - Performance monitoring
 - User analytics
@@ -222,11 +250,13 @@ src/
 ### 5. **Scalable Architecture**
 
 **Micro-frontends**
+
 - Division into independent applications
 - Module Federation for component sharing
 - Independent deployments
 
 **State Management**
+
 - Zustand or Redux Toolkit for global state
 - State persistence in localStorage
 - Tab synchronization
@@ -234,26 +264,31 @@ src/
 ## 🛠️ Technology Stack
 
 ### Frontend Framework
+
 - **React 19** - Modern React with hooks and functional components
 - **TypeScript** - Type-safe development with strict type checking
 - **Vite** - Fast build tool and development server
 
 ### UI & Styling
+
 - **Tailwind CSS v4** - Utility-first CSS framework
 - **Radix UI** - Accessible, unstyled UI primitives
 - **Lucide React** - Beautiful, customizable icons
 - **Class Variance Authority** - Type-safe component variants
 
 ### Data Management
+
 - **React Query (TanStack Query)** - Server state management
 - **Luxon** - Date manipulation and formatting
 
 ### Development Tools
+
 - **ESLint** - Code linting and quality enforcement
 - **Playwright** - End-to-end testing and visual regression testing
 - **TypeScript** - Static type checking
 
 ### Deployment
+
 - **Netlify** - Static site hosting with automatic deployments
 
 ## 🧪 Testing
@@ -261,16 +296,19 @@ src/
 The project implements a multi-layered testing strategy to ensure code quality, functionality, and visual consistency:
 
 ### **Unit Testing** (`tests/unit/`)
+
 - **Framework**: Vitest with React Testing Library
 - **Coverage**: V8 coverage provider with HTML, JSON, and text reports
 
 ### **End-to-End Testing** (`tests/e2e/`)
+
 - **Framework**: Playwright
 - **Focus**: User journey testing and integration scenarios
 
 ### **Visual Regression Testing** (`tests/visual/`)
+
 - **Framework**: Playwright with screenshot comparison
-- **Coverage**: 
+- **Coverage**:
   - Desktop and mobile viewports
   - Loading and error states
   - Cross-browser visual consistency
@@ -282,15 +320,17 @@ The project implements a multi-layered testing strategy to ensure code quality, 
 ### Manual Deployment with Netlify CLI
 
 1. **Install Netlify CLI**
+
    ```bash
    npm install -g netlify-cli
    ```
 
 2. **Deploy to Netlify**
+
    ```bash
    # Deploy to preview (optional)
    netlify deploy
-   
+
    # Deploy to production
    netlify deploy --prod
    ```
@@ -301,6 +341,7 @@ The project implements a multi-layered testing strategy to ensure code quality, 
    - Confirm deployment settings
 
 ### Alternative: One-liner deployment
+
 ```bash
 netlify deploy --prod
 ```

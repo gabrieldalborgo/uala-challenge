@@ -1,4 +1,4 @@
-import { defineConfig, devices } from '@playwright/test'
+import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   testDir: './tests',
@@ -20,11 +20,11 @@ export default defineConfig({
     {
       name: 'Mobile Chrome',
       use: { ...devices['Pixel 5'] },
-    }
+    },
   ],
   webServer: {
     command: 'VITE_API_URL=/api/data npm run dev',
     url: 'http://localhost:5173',
     reuseExistingServer: !process.env.CI,
   },
-})
+});

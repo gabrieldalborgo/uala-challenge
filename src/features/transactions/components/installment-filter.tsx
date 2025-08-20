@@ -1,9 +1,9 @@
-import { CustomSwitch } from '@/features/transactions/components/custom-switch'
-import { CustomBadge } from './custom-badge'
-import type { Filters } from '../types'
-import installmentIcon from '@/assets/installment-icon.svg'
+import { CustomSwitch } from '@/features/transactions/components/custom-switch';
+import { CustomBadge } from './custom-badge';
+import type { Filters } from '../types';
+import installmentIcon from '@/assets/installment-icon.svg';
 
-const ALL_INSTALLMENT_OPTION = { id: 'all', label: 'Todas' }
+const ALL_INSTALLMENT_OPTION = { id: 'all', label: 'Todas' };
 
 const INSTALLMENT_OPTIONS = [
   { id: '1', label: '1' },
@@ -11,11 +11,11 @@ const INSTALLMENT_OPTIONS = [
   { id: '3', label: '3' },
   { id: '6', label: '6' },
   { id: '12', label: '12' },
-]
+];
 
 interface InstallmentFilterProps {
-  value: Filters['card']
-  onChange: (value: Filters['card']) => void
+  value: Filters['card'];
+  onChange: (value: Filters['card']) => void;
 }
 
 export function InstallmentFilter({ value, onChange }: InstallmentFilterProps) {
@@ -26,11 +26,23 @@ export function InstallmentFilter({ value, onChange }: InstallmentFilterProps) {
           <div className="text-muted-foreground">
             <img src={installmentIcon} alt="Installment" className="size-6" />
           </div>
-          <span className="text-[14px] font-semibold leading-[100%] text-[#313643]" style={{ fontFamily: 'Public Sans', fontStyle: 'SemiBold', letterSpacing: '0%', verticalAlign: 'middle' }}>Cuotas</span>
+          <span
+            className="text-[14px] font-semibold leading-[100%] text-[#313643]"
+            style={{
+              fontFamily: 'Public Sans',
+              fontStyle: 'SemiBold',
+              letterSpacing: '0%',
+              verticalAlign: 'middle',
+            }}
+          >
+            Cuotas
+          </span>
         </div>
         <CustomSwitch
           checked={Boolean(value)}
-          onCheckedChange={(checked: boolean) => onChange(checked ? [] : undefined)}
+          onCheckedChange={(checked: boolean) =>
+            onChange(checked ? [] : undefined)
+          }
         />
       </div>
 
@@ -42,17 +54,23 @@ export function InstallmentFilter({ value, onChange }: InstallmentFilterProps) {
             isSelected={value.length === 0}
             onToggle={() => onChange(value.length > 0 ? [] : undefined)}
           />
-          {INSTALLMENT_OPTIONS.map((installment) => (
+          {INSTALLMENT_OPTIONS.map(installment => (
             <CustomBadge
               key={installment.id}
               id={installment.id}
               label={installment.label}
               isSelected={value.includes(installment.id)}
-              onToggle={(id) => onChange(value.includes(id) ? value.filter(v => v !== id) : [...value, id])}
+              onToggle={id =>
+                onChange(
+                  value.includes(id)
+                    ? value.filter(v => v !== id)
+                    : [...value, id]
+                )
+              }
             />
           ))}
         </div>
       )}
     </div>
-  )
+  );
 }
