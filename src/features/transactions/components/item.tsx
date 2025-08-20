@@ -1,5 +1,6 @@
 import { Skeleton } from "@/components/ui/skeleton"
 import storeIcon from "@/assets/store-icon.svg"
+import type { Transaction } from "../types"
 
 export function Item({ amount, date, method, type }: Transaction) {
   return (
