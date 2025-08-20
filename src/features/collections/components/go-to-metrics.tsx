@@ -16,7 +16,7 @@ export function GoToMetrics() {
     >
       <img 
         src={isHovered ? pieWhiteIcon : pieIcon} 
-        alt="Filter" 
+        alt="Metrics" 
         className="w-6 h-6 transition-all" 
       />
       <span
