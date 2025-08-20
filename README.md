@@ -45,8 +45,12 @@ A modern, responsive web application for managing and filtering financial transa
 
 - `npm run dev` - Start development server with hot reload
 - `npm run build` - Build for production
-- `npm run preview` - Preview production build locally
+- `npm run check` - Run lint and format checks
 - `npm run lint` - Run ESLint for code quality checks
+- `npm run lint:fix` - Run ESLint and fix auto-fixable issues
+- `npm run format` - Check code formatting with Prettier
+- `npm run format:fix` - Format code with Prettier
+- `npm run preview` - Preview production build locally
 - `npm run test:unit` - Run unit tests
 - `npm run test:unit:coverage` - Run unit tests with coverage report
 - `npm run test:unit:ui` - Run unit tests with UI interface

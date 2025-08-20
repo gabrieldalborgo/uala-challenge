@@ -6,10 +6,11 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc --project tsconfig.app.json && vite build",
+    "check": "npm run lint && npm run format",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
+    "format": "prettier --check .",
+    "format:fix": "prettier --write .",
     "preview": "vite preview",
     "test:unit": "vitest tests/unit/",
     "test:unit:coverage": "vitest tests/unit/ --coverage",
