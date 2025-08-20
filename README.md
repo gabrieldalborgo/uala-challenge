@@ -4,17 +4,17 @@ A modern, responsive web application for managing and filtering financial transa
 
 ## 🚀 Features
 
-- **Transaction Management**: View and filter financial transactions with real-time data
+- **Transaction Management**: View and filter financial transactions
 - **Advanced Filtering**: Multiple filter options including date ranges, payment methods, card types, and amount ranges
 - **Responsive Design**: Optimized for desktop and mobile devices
 - **Interactive Components**: Custom sliders, switches, and form controls
-- **Real-time Updates**: Dynamic filtering with immediate visual feedback
+- **Dynamic Filtering**: Filter transactions with immediate visual feedback
 
 ## 📦 Installation and Execution Instructions
 
 ### Prerequisites
 
-- Node.js (v22 or higher)
+- Node.js (v18 or higher)
 - npm package manager
 
 ### Local Installation
@@ -111,17 +111,16 @@ src/
 
 ### 1. **Technology Stack**
 
-**Frontend Framework: React 19 + TypeScript**
+**Frontend Framework: React + TypeScript**
 
-- React 19 for latest performance optimizations
+- React for modern component-based development
 - TypeScript for type safety and better DX
 - Vite as bundler for its speed and simple configuration
 
-**Styling: Tailwind CSS v4**
+**Styling: Tailwind CSS**
 
 - Utility-first CSS for rapid development
 - Optimized configuration with path aliases
-- Consistent design system
 
 **UI Components: Radix UI + Custom Components**
 
@@ -134,9 +133,8 @@ src/
 **React Query (TanStack Query)**
 
 - Server state management
-- Automatic caching with 1-minute staleTime
-- Automatic revalidation every minute
-- Client-side data transformation to avoid multiple requests
+- Automatic caching and revalidation
+- Loading and error state handling
 
 **Local State with React Hooks**
 
@@ -150,21 +148,19 @@ src/
 
 - Single endpoint with client-side transformation
 - Frontend filtering to avoid multiple requests
-- CORS proxy (allorigins.win) for development
 - Client-side data formatting (dates, amounts)
 
 **Date Handling**
 
 - Luxon for date manipulation
 - Consistent formatting for Argentina (es-AR)
-- Timezone handling and validations
 
 ### 4. **Testing Strategy**
 
 **Playwright for E2E Testing**
 
 - Automated visual regression tests
-- Cross-browser testing (Chrome, Firefox, Safari)
+- Cross-browser testing
 - Responsive testing on different viewports
 - Snapshots for visual comparison
 
@@ -214,7 +210,7 @@ src/
 
 **Testing**
 
-- Unit tests with Jest/Vitest
+- Unit tests with Vitest
 - Integration tests
 - Performance testing
 - Automated accessibility testing
@@ -269,13 +265,13 @@ src/
 
 ### Frontend Framework
 
-- **React 19** - Modern React with hooks and functional components
+- **React** - Modern React with hooks and functional components
 - **TypeScript** - Type-safe development with strict type checking
 - **Vite** - Fast build tool and development server
 
 ### UI & Styling
 
-- **Tailwind CSS v4** - Utility-first CSS framework
+- **Tailwind CSS** - Utility-first CSS framework
 - **Radix UI** - Accessible, unstyled UI primitives
 - **Lucide React** - Beautiful, customizable icons
 - **Class Variance Authority** - Type-safe component variants
@@ -293,7 +289,7 @@ src/
 
 ### Deployment
 
-- **Netlify** - Static site hosting with automatic deployments
+- **Netlify** - Static site hosting
 
 ## 🧪 Testing
 
@@ -317,7 +313,6 @@ The project implements a multi-layered testing strategy to ensure code quality, 
   - Loading and error states
   - Cross-browser visual consistency
   - Responsive design validation
-  - Performance monitoring
 
 ## 🚀 Deployment
 
