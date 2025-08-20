@@ -13,9 +13,9 @@ interface SimpleItem {
   label: string
 }
 
-export interface PaymentMethodDto extends SimpleItem { }
+export interface PaymentMethodDto extends SimpleItem { } // eslint-disable-line @typescript-eslint/no-empty-object-type
 
-export interface CardDto extends SimpleItem { }
+export interface CardDto extends SimpleItem { } // eslint-disable-line @typescript-eslint/no-empty-object-type
 
 export interface ResponseDto {
   transactions: TransactionDto[]

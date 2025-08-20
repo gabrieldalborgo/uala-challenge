@@ -1,10 +1,7 @@
 import { Skeleton } from "@/components/ui/skeleton"
-import type { Transaction } from "../types"
 import storeIcon from "@/assets/store-icon.svg"
 
-export interface ItemProps extends Transaction {}
-
-export function Item({ amount, date, method, type }: ItemProps) {
+export function Item({ amount, date, method, type }: Transaction) {
   return (
     <div className="flex items-center justify-between w-full h-14 gap-2 border-b border-gray-200 pt-3 pr-2 pb-3 pl-2">
       {/* Left: Icon */}

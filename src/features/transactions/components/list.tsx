@@ -1,8 +1,8 @@
 import { Item, ItemSkeleton } from "./item"
-import type { ItemProps } from "./item"
+import type { Transaction } from "../types"
 
 interface ListProps {
-  items: ItemProps[]
+  items: Transaction[]
 }
 
 export function List({ items }: ListProps) {
