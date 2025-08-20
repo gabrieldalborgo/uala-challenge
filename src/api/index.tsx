@@ -28,7 +28,8 @@ function useFetchApi<T>({ select, queryKey, transform = (r: ResponseDto) => r }:
 export function useFetchTransactions(filters: TransactionsFilters = {}): UseQueryResult<TransactionDto[]> {
   return useFetchApi({
     queryKey: [filters.minDate, filters.maxDate, filters.card, filters.paymentMethod, filters.installment, filters.minAmount, filters.maxAmount],
-    transform: (response) => {
+    transform: (data) => {
+      const response = { ...data }
 
       if (filters.minDate) {
         const minDate = DateTime.fromISO(filters.minDate)
