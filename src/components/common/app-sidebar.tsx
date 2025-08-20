@@ -41,7 +41,7 @@ export function AppSidebar() {
                   height="24"
                   className="w-6 h-6 ml-5"
                 />
-                <span className="font-sans font-normal text-sm leading-[18px] tracking-[0px]">Inicio</span>
+                <span className="font-sans font-normal text-sm leading-[18px] tracking-[0px] text-[#3564FD]">Inicio</span>
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem className="h-12 w-full">
