@@ -1,0 +1,37 @@
+{
+  "transactions": [],
+  "metadata": {
+    "cards": [
+      {
+        "value": "visa",
+        "label": "Visa"
+      },
+      {
+        "value": "mastercard",
+        "label": "Mastercard"
+      },
+      {
+        "value": "amex",
+        "label": "Amex"
+      }
+    ],
+    "paymentMethods": [
+      {
+        "value": "link",
+        "label": "Link de pago"
+      },
+      {
+        "value": "qr",
+        "label": "Código QR"
+      },
+      {
+        "value": "mpos",
+        "label": "mPOS"
+      },
+      {
+        "value": "pospro",
+        "label": "POS Pro"
+      }
+    ]
+  }
+}

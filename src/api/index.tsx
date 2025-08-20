@@ -2,12 +2,6 @@ import { DateTime } from "luxon"
 import { useQuery, type UseQueryResult } from "@tanstack/react-query"
 import type { CardDto, TransactionsFilters, PaymentMethodDto, ResponseDto, TransactionDto } from "./types"
 
-function getApiUrl(): string {
-  const baseUrl = "https://uala-dev-challenge.s3.us-east-1.amazonaws.com/transactions.json"
-  // CORS proxy to avoid CORS errors
-  return `https://api.allorigins.win/raw?url=${encodeURIComponent(baseUrl)}`
-}
-
 interface UseFetchApiProps<T> {
   select: (data: ResponseDto) => T
   transform?: (response: ResponseDto) => ResponseDto
@@ -17,7 +11,7 @@ interface UseFetchApiProps<T> {
 function useFetchApi<T>({ select, queryKey, transform = (r: ResponseDto) => r }: UseFetchApiProps<T>): UseQueryResult<T> {
   return useQuery<ResponseDto, Error, T>({
     queryKey: ["single-endpoint-api", ...(queryKey || [])],
-    queryFn: () => fetch(getApiUrl()).then(res => res.json()).then(res => transform(res)),
+    queryFn: () => fetch(import.meta.env.VITE_API_URL).then(res => res.json()).then(res => transform(res)),
     staleTime: 1000 * 60,
     refetchInterval: 1000 * 60,
     select
