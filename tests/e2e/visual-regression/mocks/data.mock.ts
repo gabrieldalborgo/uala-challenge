@@ -36,15 +36,26 @@ const transactionsMock = {
   }
 }
 
-export async function mockDataEndpoint(page, delayMs = 0) {
+export async function mockDataEndpoint(page, delayMs = 0, errorType = 'none') {
   await page.route('**/api/data', async route => {
     if (delayMs > 0) {
       await new Promise(resolve => setTimeout(resolve, delayMs));
     }
-    await route.fulfill({
-      status: 200,
-      contentType: 'application/json',
-      body: JSON.stringify(transactionsMock),
-    });
+
+    switch (errorType) {
+      case 'server_error':
+        await route.fulfill({
+          status: 500,
+          contentType: 'application/json',
+          body: JSON.stringify({ error: 'Internal Server Error' }),
+        });
+        break;
+      default:
+        await route.fulfill({
+          status: 200,
+          contentType: 'application/json',
+          body: JSON.stringify(transactionsMock),
+        });
+    }
   });
 }

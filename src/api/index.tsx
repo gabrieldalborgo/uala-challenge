@@ -11,7 +11,14 @@ interface UseFetchApiProps<T> {
 function useFetchApi<T>({ select, queryKey, transform = (r: ResponseDto) => r }: UseFetchApiProps<T>): UseQueryResult<T> {
   return useQuery<ResponseDto, Error, T>({
     queryKey: ["single-endpoint-api", ...(queryKey || [])],
-    queryFn: () => fetch(import.meta.env.VITE_API_URL).then(res => res.json()).then(res => transform(res)),
+    queryFn: () => fetch(import.meta.env.VITE_API_URL)
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`)
+        }
+        return res.json()
+      })
+      .then(res => transform(res)),
     staleTime: 1000 * 60,
     refetchInterval: 1000 * 60,
     select
